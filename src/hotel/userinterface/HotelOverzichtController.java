@@ -1,14 +1,21 @@
 package hotel.userinterface;
 
+import hotel.model.Boeking;
 import hotel.model.Hotel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class HotelOverzichtController {
@@ -34,18 +41,27 @@ public class HotelOverzichtController {
         overzichtDatePicker.setValue(dagLater);
     }
 
-    public void nieuweBoeking(ActionEvent actionEvent) {
-        System.out.println("nieuweBoeking() is nog niet geïmplementeerd!");
+    public void nieuweBoeking(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Boekingen.fxml"));
+        Parent root = loader.load();
 
-        // Maak in je project een nieuwe FXML-pagina om boekingen te kunnen invoeren
-        // Open de nieuwe pagina in deze methode
-        // Zorg dat de gebruiker ondertussen geen gebruik kan maken van de HotelOverzicht-pagina
-        // Update na sluiten van de nieuwe pagina het boekingen-overzicht
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(root));
+        newStage.initModality(Modality.APPLICATION_MODAL);
+        newStage.showAndWait();
+        initialize();
     }
 
     public void toonBoekingen() {
-        System.out.println("toonBoekingen() is nog niet geïmplementeerd!");
         ObservableList<String> boekingen = FXCollections.observableArrayList();
+
+        LocalDate date = overzichtDatePicker.getValue();
+
+        for(Boeking boeking : hotel.getBoekingen()){
+            if(boeking.getBoekDatum().equals(date)) {
+            boekingen.add("Begin: " + boeking.getAankomstDatum() + " Eind: " + boeking.getVertrekDatum() + " Kamer #: " + boeking.getKamer().getKamerNummer() + " Naam: " + boeking.getBoeker().getNaam());
+            }
+        }
 
         // Vraag de boekingen op bij het Hotel-object.
         // Voeg voor elke boeking in nette tekst (string) toe aan de boekingen-lijst.

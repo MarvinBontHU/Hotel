@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="358.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotel.userinterface.BoekingenController">
+   <children>
+      <Label fx:id="bovenLabel" layoutX="41.0" layoutY="32.0" text="Voer uw gegevens in!" />
+      <Label layoutX="41.0" layoutY="78.0" text="Naam:" />
+      <Label layoutX="41.0" layoutY="119.0" text="Adres:" />
+      <Label layoutX="41.0" layoutY="159.0" text="Aankomstdatum:" />
+      <Label layoutX="41.0" layoutY="203.0" text="Vertrekdatum:" />
+      <Label layoutX="41.0" layoutY="249.0" text="Kamertype:" />
+      <TextField fx:id="naamTextField" layoutX="169.0" layoutY="74.0" prefHeight="26.0" prefWidth="250.0" />
+      <TextField fx:id="adresTextField" layoutX="169.0" layoutY="115.0" prefHeight="26.0" prefWidth="250.0" />
+      <DatePicker fx:id="aankomstDatePicker" layoutX="169.0" layoutY="155.0" prefHeight="26.0" prefWidth="250.0" />
+      <DatePicker fx:id="vertrekDatePicker" layoutX="169.0" layoutY="199.0" prefHeight="26.0" prefWidth="250.0" />
+      <ComboBox fx:id="kamerComboBox" layoutX="169.0" layoutY="245.0" prefHeight="26.0" prefWidth="250.0" />
+      <Button fx:id="boekButton" layoutX="358.0" layoutY="306.0" mnemonicParsing="false" onAction="#boek" prefHeight="26.0" prefWidth="60.0" text="Boek" />
+      <Button fx:id="resetButton" layoutX="281.0" layoutY="306.0" mnemonicParsing="false" onAction="#resetBoeking" prefHeight="26.0" prefWidth="60.0" text="Reset" />
+   </children>
+</AnchorPane>
