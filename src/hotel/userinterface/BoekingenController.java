@@ -1,6 +1,7 @@
 package hotel.userinterface;
 
 import hotel.model.Hotel;
+import hotel.model.Kamer;
 import hotel.model.KamerType;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -14,7 +15,7 @@ public class BoekingenController {
     public TextField adresTextField;
     public DatePicker aankomstDatePicker;
     public DatePicker vertrekDatePicker;
-    public ComboBox kamerComboBox;
+    public ComboBox<KamerType> kamerComboBox;
     public Button boekButton;
     public Button resetButton;
     public Label bovenLabel;
@@ -39,14 +40,16 @@ public class BoekingenController {
 
     public void boek(ActionEvent actionEvent) {
         try {
-            if (!(naamTextField == null) &&
-                !(adresTextField == null) &&
-                !aankomstDatePicker.getValue().isBefore(LocalDate.now()) &&
-                !vertrekDatePicker.getValue().isBefore(LocalDate.now()) &&
+            if (!(naamTextField.getText().equals("")) &&
+                !(adresTextField.getText().equals("")) &&
+                !(aankomstDatePicker.getValue().isBefore(LocalDate.now())) &&
+                !(vertrekDatePicker.getValue().isBefore(LocalDate.now())) &&
                 aankomstDatePicker.getValue().isBefore(vertrekDatePicker.getValue()) &&
-                !(kamerComboBox == null)) {
-                hotel.voegBoekingToe(aankomstDatePicker.getValue(), vertrekDatePicker.getValue(), naamTextField.getText(), adresTextField.getText(), (KamerType) kamerComboBox.getValue());
-                bovenLabel.setText("Uw boeking is gelukt!");
+                !(kamerComboBox.getValue().equals(""))) {
+                    hotel.voegBoekingToe(aankomstDatePicker.getValue(), vertrekDatePicker.getValue(), naamTextField.getText(), adresTextField.getText(), kamerComboBox.getValue());
+                    bovenLabel.setText("Uw boeking is gelukt!");
+            } else {
+                bovenLabel.setText("Er ontbreken gegevens!");
             }
         } catch (Exception e){
             bovenLabel.setText("Er ontbreken gegevens!");

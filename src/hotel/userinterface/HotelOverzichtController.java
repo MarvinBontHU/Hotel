@@ -63,9 +63,6 @@ public class HotelOverzichtController {
             }
         }
 
-        // Vraag de boekingen op bij het Hotel-object.
-        // Voeg voor elke boeking in nette tekst (string) toe aan de boekingen-lijst.
-
         boekingenListView.setItems(boekingen);
     }
 }
